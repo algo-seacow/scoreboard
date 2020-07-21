@@ -22,7 +22,7 @@
 </template>
 
 <script>
-const repoUrlRegex = /^https:\/\/github.com\/([^/]*)\/([^/]*)\/?$/
+const repoUrlRegex = /^https?:\/\/github.com\/([^/]*)\/([^/]*)\/?$/
 
 export default {
   name: 'Index',
