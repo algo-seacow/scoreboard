@@ -1,6 +1,12 @@
 <template>
   <v-container>
-    <h1>{{user}}'s Scoreboard</h1>
+    <h1 class="scoreboard-title">{{user}}'s Scoreboard</h1>
+    <v-btn
+      small
+      text
+      replace
+      to="/"
+      >back</v-btn>
     <div v-for="problemSet in problemSets" :key="problemSet.title">
       <h4>{{ problemSet.title }}</h4>
       <template v-for="(problem, index) in problemSet.problems">
@@ -34,6 +40,9 @@ export default {
 <style scoped>
 .container {
   text-align: left;
+}
+.scoreboard-title {
+  display: inline-block;
 }
 .solved {
   color: green;

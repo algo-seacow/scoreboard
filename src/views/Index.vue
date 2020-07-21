@@ -41,7 +41,7 @@ export default {
       e.preventDefault()
       if (this.valid) {
         let md = repoUrlRegex.exec(this.repoUrl)
-        this.$router.replace({
+        this.$router.push({
           name: "Scoreboard",
           query: {
             user: md[1],
