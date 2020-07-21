@@ -1,0 +1,18 @@
+language: node_js
+
+node_js: node
+
+branches:
+  only: master
+
+cache: yarn
+
+script: yarn build
+
+deploy:
+  provider: pages
+  local-dir: dist
+  repo: algo-seacow/algo-seacow.github.io
+  target-branch: master
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
