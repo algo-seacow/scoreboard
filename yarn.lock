@@ -7956,6 +7956,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
+vue2-github-corners@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/vue2-github-corners/-/vue2-github-corners-0.1.12.tgz#7a1f620e1d2b5c7e24728f307db1fcf5a08fea41"
+  integrity sha512-Uj48TBi0Apy6bvvPx0f8ir60u/icXWaOc57Hb/0wKLvEbTTLhprBP/R8V9u0lDJosopmiPS87O/ZjsPmX1sGQg==
+
 vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
