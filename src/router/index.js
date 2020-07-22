@@ -18,7 +18,7 @@ Vue.use(VueRouter)
     props: route => ({
       user: route.query.user,
       repo: route.query.repo,
-      gist: route.query.gist
+      gist: route.query.gist || Vue.defaultGist
     })
   }
 ]

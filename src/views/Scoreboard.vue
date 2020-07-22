@@ -37,8 +37,10 @@ export default {
     }
   },
   async created() {
-    if (!this.user || !this.repo || !this.gist)
+    if (!this.user || !this.repo || !this.gist) {
       this.$router.replace({ name: "Index" })
+      return
+    }
     this.problemSets = await this.github.getProblemSets(this.gist)
     this.solved = new Set(await this.github.getZJSolved(this.user, this.repo))
     localStorage.setItem("user", this.user)
