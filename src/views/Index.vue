@@ -3,10 +3,10 @@
     <v-layout wrap align-content-center align-center> 
       <v-flex>
         <v-form @submit="go" v-model="valid">
-          <h1>Scoreboard</h1>
           <v-text-field
             v-model="repoUrl"
             label="Repository URL"
+            placeholder="https://github.com/algo-seacow/Competitive-Programming"
             :rules="repoUrlRules"
             required
             />
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-const repoUrlRegex = /^https?:\/\/github.com\/([^/]*)\/([^/]*)\/?$/
+const repoUrlRegex = /^(?:https?:\/\/)?github.com\/([^/]*)\/([^/]*)\/?$/
 
 export default {
   name: 'Index',
@@ -53,3 +53,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.v-text-field {
+  margin-bottom: 8px;
+}
+
+.v-text-field >>> .v-label {
+  top: -10px;
+  font-size: 32px;
+  height: 36px;
+  line-height: 36px;
+}
+</style>
