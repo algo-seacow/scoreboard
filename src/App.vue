@@ -1,12 +1,23 @@
 <template>
   <v-app>
+    <vue-github-corners repo-url="https://github.com/algo-seacow/scoreboard" :bg-color="primary" />
     <router-view/>
   </v-app>
 </template>
 
 <script>
+import { VueGithubCorners } from 'vue2-github-corners'
+
 export default {
   name: "App",
+  components: {
+    VueGithubCorners
+  },
+  data() {
+    return {
+      primary: this.$vuetify.theme.themes.light.primary
+    }
+  },
   async created() {
     this.github.initialize()
   }
