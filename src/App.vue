@@ -19,7 +19,21 @@ export default {
     }
   },
   async created() {
-    this.github.initialize()
+    if (this.$router.currentRoute.name === "Index") {
+      let user = localStorage.getItem("user")
+      let repo = localStorage.getItem("repo")
+      let gist = localStorage.getItem("gist")
+      if (user && repo && gist)
+        this.$router.push({
+          name: "Scoreboard",
+          query: {
+            user: user,
+            repo: repo,
+            gist: gist
+          }
+        })
+    }
+    await this.github.initialize()
   }
 }
 </script>

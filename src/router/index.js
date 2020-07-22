@@ -17,7 +17,8 @@ Vue.use(VueRouter)
     component: Scoreboard,
     props: route => ({
       user: route.query.user,
-      repo: route.query.repo
+      repo: route.query.repo,
+      gist: route.query.gist
     })
   }
 ]
