@@ -37,7 +37,7 @@ export default {
     return {
       valid: false,
       repoUrl: "",
-      gistUrl: "https://gist.github.com/6af5565e3b09e43925e5132193a091ed",
+      gistUrl: `https://gist.github.com/${this.defaultGist}`,
       repoUrlRules: [
         v => !!v || "Your repository URL is required",
         v => repoUrlRegex.test(v) || "Not a valid repository URL"
