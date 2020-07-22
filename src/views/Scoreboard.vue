@@ -13,9 +13,13 @@
       <h4>{{ problemSet.title }}</h4>
       <template v-for="(problem, index) in problemSet.problems">
         <span v-if="index != 0" :key="index"> | </span>
-        <span :class="solved && solved.has(problem) ? 'solved' : ''" :key="problem">
-          {{ problem }}
-        </span>
+        <a
+          :class="solved.has(problem.problem_id) ? 'solved' : 'unsolved'"
+          :key="problem.problem_id"
+          :href="problem.problem_url"
+          target="_blank"
+          >{{ problem.oj_short_name }} {{ problem.problem_id }}
+        </a>
       </template>
     </div>
   </v-container>
@@ -24,18 +28,22 @@
 <script>
 export default {
   name: "Scoreboard",
-  props: ["user", "repo"],
+  props: ["user", "repo", "gist"],
   data() {
     return {
       link: `https://github.com/${this.user}/${this.repo}`,
-      solved: null
+      solved: new Set(),
+      problemSets: []
     }
   },
   async created() {
-    if (!this.user || !this.repo)
+    if (!this.user || !this.repo || !this.gist)
       this.$router.replace({ name: "Index" })
+    this.problemSets = await this.github.getProblemSets(this.gist)
     this.solved = new Set(await this.github.getZJSolved(this.user, this.repo))
-    console.log(this.solved)
+    localStorage.setItem("user", this.user)
+    localStorage.setItem("repo", this.repo)
+    localStorage.setItem("gist", this.gist)
   }
 }
 </script>
@@ -50,5 +58,8 @@ export default {
 .solved {
   color: green;
   font-weight: bold;
+}
+.unsolved {
+  color: unset;
 }
 </style>

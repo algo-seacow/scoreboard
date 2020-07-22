@@ -32,13 +32,20 @@ const GitHub = {
       },
       async getZJFiles(user, repo) {
         try {
-          return await this.getFiles(user, repo, "zj")
+          return await this.getRepoFiles(user, repo, "zj")
         } catch (e) {
-          return await this.getFiles(user, repo, "zerojudge")
+          return await this.getRepoFiles(user, repo, "zerojudge")
         }
       },
-      async getFiles(user, repo, path = "") {
+      async getRepoFiles(user, repo, path = "") {
         return await this.get(`/repos/${user}/${repo}/contents/${path}`)
+      },
+      async getProblemSets(id) {
+        let raw_url = (await this.getGist(id))["files"]["problem_sets.json"]["raw_url"]
+        return await this.get(raw_url)
+      },
+      async getGist(id) {
+        return await this.get(`/gists/${id}`)
       },
       async get(url) {
         return await this.request("GET", url)
