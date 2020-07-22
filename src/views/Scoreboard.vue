@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <h1 class="scoreboard-title">{{user}}'s Scoreboard</h1>
+    <h1 class="scoreboard-title">
+      <a :href="link" target="_blank">{{user}}</a>'s Scoreboard
+    </h1>
     <v-btn
       small
       text
@@ -25,6 +27,7 @@ export default {
   props: ["user", "repo"],
   data() {
     return {
+      link: `https://github.com/${this.user}/${this.repo}`,
       solved: null
     }
   },
