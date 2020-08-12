@@ -27,14 +27,26 @@ const GitHub = {
       clear() {
         this.client = null
       },
-      async getZJSolved(user, repo) {
-        return (await this.getZJFiles(user, repo)).map(file => file.name.split(".")[0])
+      async getSolved(user, repo, pss) {
+        let solved = {}
+        for (let ps of pss)
+          for (let problem of ps.problems)
+            if (!(problem.oj_short_name in solved))
+              solved[problem.oj_short_name] = problem.oj_full_name
+        for (let [short, full] of Object.entries(solved)) {
+          try {
+            solved[short] = new Set((await this.getFiles(user, repo, short, full)).map(file => file.name.split(".")[0]))
+          } catch (e) {
+            delete solved[short]
+          }
+        }
+        return solved
       },
-      async getZJFiles(user, repo) {
+      async getFiles(user, repo, short, full) {
         try {
-          return await this.getRepoFiles(user, repo, "zj")
+          return await this.getRepoFiles(user, repo, short.toLowerCase())
         } catch (e) {
-          return await this.getRepoFiles(user, repo, "zerojudge")
+          return await this.getRepoFiles(user, repo, full.replace(/\s/g, '').toLowerCase())
         }
       },
       async getRepoFiles(user, repo, path = "") {
