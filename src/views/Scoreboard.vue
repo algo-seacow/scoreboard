@@ -14,7 +14,7 @@
       <template v-for="(problem, index) in problemSet.problems">
         <span v-if="index != 0" :key="index"> | </span>
         <a
-          :class="solved.has(problem.problem_id) ? 'solved' : 'unsolved'"
+          :class="solved[problem.oj_short_name] && solved[problem.oj_short_name].has(problem.problem_id) ? 'solved' : 'unsolved'"
           :key="problem.problem_id"
           :href="problem.problem_url"
           target="_blank"
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       link: `https://github.com/${this.user}/${this.repo}`,
-      solved: new Set(),
+      solved: {},
       problemSets: []
     }
   },
@@ -42,7 +42,7 @@ export default {
       return
     }
     this.problemSets = await this.github.getProblemSets(this.gist)
-    this.solved = new Set(await this.github.getZJSolved(this.user, this.repo))
+    this.solved = await this.github.getSolved(this.user, this.repo, this.problemSets)
     localStorage.setItem("user", this.user)
     localStorage.setItem("repo", this.repo)
     localStorage.setItem("gist", this.gist)
