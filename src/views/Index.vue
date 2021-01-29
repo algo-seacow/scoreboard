@@ -6,7 +6,7 @@
           <v-text-field
             v-model="repoUrl"
             label="Your Repository URL"
-            placeholder="https://github.com/algo-seacow/Competitive-Programming"
+            placeholder="https://github.com/algo-seacow/code"
             :rules="repoUrlRules"
             required
             />
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       valid: false,
-      repoUrl: "",
+      repoUrl: "https://github.com/algo-seacow/code",
       gistUrl: `https://gist.github.com/${this.defaultGist}`,
       repoUrlRules: [
         v => !!v || "Your repository URL is required",
